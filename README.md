@@ -122,6 +122,8 @@ Run these commands from the project root, after you've made and saved your chang
 
 Merge (or have the facilitator merge) once the check is green and the review is complete, or leave the PR open for the facilitator to review live.
 
+**Reference:** [PR #1](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter/pull/1) shows this whole flow end to end — a worked fix, a filled-in `ticket.md`/`review.md`, and a passing `SnackBot tests` check. It's closed without merging so `main` keeps the starter's original bugs.
+
 ## If you get stuck
 
 Read the test's expected and actual output first. Trace the specific input through `src/order.js`. Ask the facilitator for a hint before opening a solution.
