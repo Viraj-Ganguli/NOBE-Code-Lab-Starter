@@ -36,9 +36,9 @@
     test('Negative quantities are rejected', () => {
       equal(api.quoteOrder([{ id: 'cookie', quantity: -1 }], catalog).ok, false);
     });
-    // TEAM TASK: add a new test here. Pick an untested boundary or a mixed cart.
-    // Copy a test above, then change the name, input and expected result.
-    // Calculate the expected value yourself; don't call production code to compute it.
+    test('A mixed cart of two cookies and two fruit cups costs 1000 cents', () => {
+      equal(api.quoteOrder([{ id: 'cookie', quantity: 2 }, { id: 'fruit', quantity: 2 }], catalog).totalCents, 1000);
+    });
     return results;
   }
   if (typeof module !== 'undefined' && module.exports) module.exports = runTests;

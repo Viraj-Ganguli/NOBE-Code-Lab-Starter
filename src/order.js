@@ -11,12 +11,12 @@
       requested[line.id] = (requested[line.id] || 0) + line.quantity;
     }
     for (const id of Object.keys(requested)) {
-      if (catalog[id].stock === 0) return 'Not enough stock.';
+      if (requested[id] > catalog[id].stock) return 'Not enough stock.';
     }
     return null;
   }
   function calculateTotalCents(cart, catalog) {
-    return cart.reduce((total, line) => total + catalog[line.id].priceCents, 0);
+    return cart.reduce((total, line) => total + catalog[line.id].priceCents * line.quantity, 0);
   }
   function quoteOrder(cart, catalog) {
     const error = validateOrder(cart, catalog);
