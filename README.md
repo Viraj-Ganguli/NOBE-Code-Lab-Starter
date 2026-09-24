@@ -1,10 +1,17 @@
 # SnackBot: a NOBE client-project lab
 
+[![CI](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter/actions/workflows/tests.yml/badge.svg)](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter/actions/workflows/tests.yml)
+
 You inherited a small JavaScript prototype. Your team must investigate a client complaint, write a ticket, change production code, add a test, and review the result.
 
 ## Start here
 
-1. Extract the entire ZIP. Do not open files from inside the ZIP preview.
+This lab lives at [github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter). Get your own copy one of two ways:
+
+- **GitHub (recommended if your team will open a pull request):** click **Fork** on the repo page to copy it into your own GitHub account, then clone your fork. See [Git and GitHub](#git-and-github) below for the exact commands.
+- **ZIP:** download the repo as a ZIP (**Code → Download ZIP**) and extract the entire archive. Do not open files from inside the ZIP preview.
+
+1. Get the folder using one of the two methods above.
 2. Open this folder in a code editor. Any plain-text code editor works.
 3. Open `index.html` in a browser. No server, accounts, package install, or internet is required.
 4. Open `tests/index.html` in another browser tab. The starter intentionally passes **6 of 8 tests**.
@@ -76,21 +83,44 @@ The reviewer reads the code change and acceptance criteria, then completes `revi
 
 The flow is: form input calls `quoteOrder`; that calls validation and total calculation; the UI displays the result. Tests call the same API without using the form. Price calculations use integer cents to avoid doing money calculations with decimal dollars.
 
-## Git and GitHub, if already set up
+## Git and GitHub
 
-The core lab does not depend on GitHub setup. If the facilitator provided a repository, clone that repository and work on a team branch instead of using the ZIP.
+The core lab does not require GitHub — the ZIP route above works fully offline. Use this section if your team wants the real workflow: a branch, a pull request, and a CI check that runs automatically.
+
+### One-time setup (per team)
+
+1. On the [repo page](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter), click **Fork** (top right) to copy the repo into your own GitHub account. Each team should fork separately so teams don't collide on the same branches.
+2. Clone your fork (replace `your-username`):
+
+   ```sh
+   git clone https://github.com/your-username/NOBE-Code-Lab-Starter.git
+   cd NOBE-Code-Lab-Starter
+   ```
+
+   Git may prompt for your usual author identity (`git config user.name` / `user.email`) the first time you commit.
+
+### While you work
 
 ```sh
 git switch -c team/reliable-orders
-git diff
+# ...edit src/order.js, tests/cases.js, ticket.md, review.md...
 node tests/run.cjs
 git add src/order.js tests/cases.js ticket.md review.md
 git commit -m "Fix order totals and stock validation"
+git push -u origin team/reliable-orders
 ```
 
-Run these commands from the project root in an existing repository. If using a ZIP and you want local Git history, run `git init`, `git add .`, and `git commit -m "Workshop starter"` **before editing**, then create your branch. Git may require your usual author identity to be configured.
+Run these commands from the project root, after you've made and saved your changes. Commit only the files you were asked to touch.
 
-Push only to your assigned repository and open a pull request if the facilitator has arranged access. Paste `review.md` into the PR description and link the ticket. The included workflow runs the same tests using Node 22 on a hosted runner. It does not deploy the app or automatically block merging; required checks need repository configuration.
+### Open the pull request and watch CI run
+
+1. Push prints a link ("Create a pull request for 'team/reliable-orders' on GitHub"), or go to your fork on GitHub — it shows a **Compare & pull request** button for the branch you just pushed.
+2. Base the PR on your **own fork's `main`** (not the original repo) — the default is usually correct. Paste `review.md`'s contents into the PR description and link your ticket.
+3. Open the PR. Within a few seconds a **checks** section appears at the bottom of the PR (and a yellow/green/red dot next to the latest commit) running the `SnackBot tests` workflow — the same `node tests/run.cjs` you ran locally, on a clean GitHub-hosted runner with Node 22. Click **Details** next to the check to see the live log.
+4. A red ✗ means at least one test still fails — fix the code or test and push another commit to the same branch; the check re-runs automatically. A green ✓ means all tests pass on a fresh checkout, not just your machine.
+5. The workflow (`.github/workflows/tests.yml`) only reports status; it does not deploy anything and does not block merging by itself. A facilitator with admin access could make it a required check under **Settings → Branches** if they want it to block merges.
+
+Merge (or have the facilitator merge) once the check is green and the review is complete, or leave the PR open for the facilitator to review live.
 
 ## If you get stuck
 
