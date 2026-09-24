@@ -1,7 +1,5 @@
 # SnackBot: a NOBE client-project lab
 
-[![CI](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter/actions/workflows/tests.yml/badge.svg)](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter/actions/workflows/tests.yml)
-
 You inherited a small JavaScript prototype. Your team must investigate a client complaint, write a ticket, change production code, add a test, and review the result.
 
 ## Start here
@@ -17,7 +15,7 @@ This lab lives at [github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter](https://githu
 4. Open `tests/index.html` in another browser tab. The starter intentionally passes **6 of 8 tests**.
 5. Keep the editor and browser side by side. Save a changed file, then reload the app or test tab.
 
-Optional terminal route, if Node.js is already installed: `node tests/run.cjs` from this folder. A failing test returns a nonzero exit code, which also makes CI fail.
+Optional terminal route, if Node.js is already installed: `node tests/run.cjs` from this folder. A failing test returns a nonzero exit code, which is also what makes the GitHub Actions check fail on a pull request.
 
 ## The client message
 
@@ -79,7 +77,7 @@ The reviewer reads the code change and acceptance criteria, then completes `revi
 | `tests/index.html` | Browser test runner |
 | `tests/run.cjs` | Terminal and CI test runner |
 | `ticket.md`, `review.md` | Your team's actual work records |
-| `.github/workflows/tests.yml` | CI checks on pushes and pull requests |
+| `.github/workflows/tests.yml` | CI check that runs on pull requests |
 
 The flow is: form input calls `quoteOrder`; that calls validation and total calculation; the UI displays the result. Tests call the same API without using the form. Price calculations use integer cents to avoid doing money calculations with decimal dollars.
 
