@@ -6,7 +6,7 @@ You inherited a small JavaScript prototype. Your team must investigate a client 
 
 This lab lives at [github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter](https://github.com/Viraj-Ganguli/NOBE-Code-Lab-Starter). Get your own copy one of two ways:
 
-- **GitHub (recommended if your team will open a pull request):** click **Fork** on the repo page to copy it into your own GitHub account, then clone your fork. See [Git and GitHub](#git-and-github) below for the exact commands.
+- **GitHub (recommended if your team will open a pull request):** click **Fork** on the repo page to copy it into your own GitHub account, then clone **your fork's** URL, not the one above — only the repo owner can push to this original repo, so cloning it directly will fail with a 403 error when you try to push. See [Git and GitHub](#git-and-github) below for the exact commands.
 - **ZIP:** download the repo as a ZIP (**Code → Download ZIP**) and extract the entire archive. Do not open files from inside the ZIP preview.
 
 1. Get the folder using one of the two methods above.
@@ -96,6 +96,14 @@ The core lab does not require GitHub — the ZIP route above works fully offline
    ```
 
    Git may prompt for your usual author identity (`git config user.name` / `user.email`) the first time you commit.
+
+> **Getting a 403 error when you push?** You're almost certainly pushing to the original repo instead of your own fork — only the repo owner can push there. Run `git remote -v`. If `origin` shows `Viraj-Ganguli/NOBE-Code-Lab-Starter` instead of your own username, you cloned the wrong URL. Fix it without re-cloning:
+>
+> ```sh
+> git remote set-url origin https://github.com/your-username/NOBE-Code-Lab-Starter.git
+> ```
+>
+> Then push again. If `origin` already points to your fork and you *still* get 403, your machine's cached Git credentials likely belong to a different GitHub account — sign out and back in (or run `gh auth login` if you have GitHub CLI) and try the push again.
 
 ### While you work
 
